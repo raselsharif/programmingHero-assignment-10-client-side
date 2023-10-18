@@ -16,6 +16,10 @@ const DetailsCard = ({ car }) => {
         <span className="font-medium">Details: </span>
         {details ? details.slice(0, 200) : "No details"}.....
       </p>
+      <div>
+        <span>Price: TK {price} Lakh </span>
+        <span>Rating: {rating} </span>
+      </div>
       <div className="flex justify-between">
         <Link
           to={`/cardetails/${_id}`}
@@ -24,7 +28,7 @@ const DetailsCard = ({ car }) => {
           See more
         </Link>
         <Link
-          to={"/updatecar"}
+          to={`/updatecar/${_id}`}
           className="bg-green-500 py-2 px-3 rounded-md font-semibold text-white hover:bg-green-600 inline-block my-3"
         >
           Update

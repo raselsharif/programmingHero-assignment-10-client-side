@@ -1,5 +1,8 @@
-const AddProduct = () => {
-  const handleAddCar = (e) => {
+import { useLoaderData } from "react-router-dom";
+const CarUpdate = () => {
+  const loadedCars = useLoaderData();
+  const { image, name, brandName, price, rating, details, _id } = loadedCars;
+  const handleUpdateCar = (e) => {
     e.preventDefault();
     const form = e.target;
     const image = form.image.value;
@@ -17,8 +20,8 @@ const AddProduct = () => {
       details,
     };
     console.log(carInfo);
-    fetch("http://localhost:5000/cars", {
-      method: "POST",
+    fetch(`http://localhost:5000/cars/${_id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
@@ -33,15 +36,16 @@ const AddProduct = () => {
   return (
     <div>
       <h2 className="text-center bg-red-500 py-3 text-white font-bold text-2xl mb-8">
-        Add Car
+        Update Car
       </h2>
       <div className="max-w-3xl px-4 mx-auto py-10">
-        <form onSubmit={handleAddCar} className="space-y-4">
+        <form onSubmit={handleUpdateCar} className="space-y-4">
           <input
             className="border border-red-400 py-2 px-3 mb-2 w-full focus:outline-red-500"
             type="text"
             name="image"
             placeholder="Past Image URL"
+            defaultValue={image}
           />{" "}
           <br />
           <input
@@ -49,11 +53,13 @@ const AddProduct = () => {
             type="text"
             name="name"
             placeholder="Type Car Name"
+            defaultValue={name}
           />{" "}
           <br />
           <select
             name="brandName"
             className="border border-red-400 py-2 px-3 mb-2 w-full focus:outline-red-500"
+            defaultValue={brandName}
           >
             <option value="Audi">Audi</option>
             <option value="Mercedes-Benz">Mercedes-Benz</option>
@@ -68,6 +74,7 @@ const AddProduct = () => {
             type="text"
             name="details"
             placeholder="Details"
+            defaultValue={details}
           />{" "}
           <br />
           <input
@@ -75,6 +82,7 @@ const AddProduct = () => {
             type="text"
             name="price"
             placeholder="Price"
+            defaultValue={price}
           />{" "}
           <br />
           <input
@@ -82,15 +90,16 @@ const AddProduct = () => {
             type="text"
             name="rating"
             placeholder="Rating"
+            defaultValue={rating}
           />{" "}
           <br />
           <div className="text-center ">
             <input
               className="inline-block bg-green-500 py-2 px-3 rounded-lg text-white font-semibold cursor-pointer hover:opacity-80
-              w-1/3
-              "
+            w-1/3
+            "
               type="submit"
-              value={"Add Car"}
+              value={"Update Car"}
             />
           </div>
         </form>
@@ -99,4 +108,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default CarUpdate;

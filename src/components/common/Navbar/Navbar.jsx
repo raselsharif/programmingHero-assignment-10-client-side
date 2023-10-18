@@ -3,9 +3,42 @@ import { Link, NavLink } from "react-router-dom";
 const Navbar = () => {
   const menus = (
     <>
-      <NavLink to={"/"}>Home</NavLink>
-      <NavLink to={"/addproduct"}>Add Product</NavLink>
-      <NavLink to={"/mycart"}>My Cart</NavLink>
+      <NavLink
+        to="/"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? "pending"
+            : isActive
+            ? "text-red-500 border-b-2 border-red-500"
+            : ""
+        }
+      >
+        Home
+      </NavLink>
+      <NavLink
+        to="/addproduct"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? "pending"
+            : isActive
+            ? "text-red-500 border-b-2 border-red-500"
+            : ""
+        }
+      >
+        Add Product
+      </NavLink>
+      <NavLink
+        to="/mycart"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? "pending"
+            : isActive
+            ? "text-red-500 border-b-2 border-red-500"
+            : ""
+        }
+      >
+        My Cart
+      </NavLink>
     </>
   );
   return (
@@ -36,11 +69,13 @@ const Navbar = () => {
           </ul>
         </div>
         <Link>
-          <img src="./logo.jpg" alt="logo" className="w-24" />
+          <img src="/logo.jpg" alt="logo" className="w-24" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{menus}</ul>
+        <ul className="menu menu-horizontal px-1 space-x-6 font-medium text-lg">
+          {menus}
+        </ul>
       </div>
       <div className="navbar-end">
         <Link

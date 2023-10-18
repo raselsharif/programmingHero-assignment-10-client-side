@@ -11,10 +11,14 @@ const Brand = () => {
   }, []);
   return (
     <div>
-      <h2 className="my-2">Our Brands</h2>
+      <div className="text-center mt-12">
+        <h2 className="my-2 font-semibold text-3xl border-b-2 border-red-500 pb-3 inline-block">
+          Our Brands
+        </h2>
+      </div>
       <Link
         to={"/createbrand"}
-        className="bg-green-500 py-2 px-3 font-semibold text-white"
+        className="bg-green-500 py-2 px-3 font-semibold text-white hidden"
       >
         Add New Brand
       </Link>
