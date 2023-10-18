@@ -1,4 +1,5 @@
 import { data } from "autoprefixer";
+import { Link } from "react-router-dom";
 
 const CreateBrand = () => {
   const handleCreate = (e) => {
@@ -21,6 +22,7 @@ const CreateBrand = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        form.reset();
       });
   };
   return (
@@ -41,12 +43,18 @@ const CreateBrand = () => {
         />{" "}
         <br />
         <input
-          className="bg-green-500 py-2 px-3 font-semibold rounded-md text-white"
+          className="bg-green-500 py-2 px-3 font-semibold rounded-md text-white cursor-pointer"
           type="submit"
           value={"Submit"}
         />{" "}
         <br />
       </form>
+      <Link
+        to={"/"}
+        className="bg-green-500 py-2 px-3 font-semibold text-white cursor-pointer"
+      >
+        Back to Home
+      </Link>
     </div>
   );
 };
