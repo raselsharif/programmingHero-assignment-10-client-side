@@ -5,6 +5,7 @@ const AddProduct = () => {
     const image = form.image.value;
     const name = form.name.value;
     const brandName = form.brandName.value;
+    const details = form.details.value;
     const price = form.price.value;
     const rating = form.rating.value;
     const carInfo = {
@@ -13,6 +14,7 @@ const AddProduct = () => {
       brandName,
       price,
       rating,
+      details,
     };
     console.log(carInfo);
     fetch("http://localhost:5000/cars", {
@@ -25,6 +27,7 @@ const AddProduct = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        form.reset();
       });
   };
   return (
@@ -65,6 +68,13 @@ const AddProduct = () => {
             <option value="Ford">Ford</option>
             <option value="BMW">BMW</option>
           </select>
+          <br />
+          <input
+            className="border border-red-400 py-2 px-3 mb-2 w-full focus:outline-red-500"
+            type="text"
+            name="details"
+            placeholder="Details"
+          />{" "}
           <br />
           <input
             className="border border-red-400 py-2 px-3 mb-2 w-full focus:outline-red-500"
