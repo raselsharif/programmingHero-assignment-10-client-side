@@ -1,24 +1,18 @@
 import { useContext } from "react";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
-const Login = () => {
-  const { loginWithGoogle, loginWithEmail } = useContext(AuthContext);
-  const handleLogin = (e) => {
+const Registration = () => {
+  const { registerWithEmail } = useContext(AuthContext);
+  const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
+    const name = form.name.value;
+    const photo = form.photo.value;
     const password = form.password.value;
-    loginWithEmail(email, password)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  const handleGoogleLogin = () => {
-    loginWithGoogle()
+    console.log(email, name, photo, password);
+    registerWithEmail(email, password)
       .then((res) => {
         console.log(res.user);
       })
@@ -38,7 +32,7 @@ const Login = () => {
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-gray-500 bg-opacity-40 text-white shadow-red-300">
-          <form onSubmit={handleLogin} className="card-body">
+          <form onSubmit={handleRegister} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="">Email</span>
@@ -53,6 +47,29 @@ const Login = () => {
             </div>
             <div className="form-control">
               <label className="label">
+                <span className="">Full Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Name"
+                className="input input-bordered text-red-500 font-semibold"
+                required
+                name="name"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="">Photo</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Photo URL (Optional)"
+                className="input input-bordered text-red-500 font-semibold"
+                name="photo"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
                 <span className="">Password</span>
               </label>
               <input
@@ -63,31 +80,29 @@ const Login = () => {
                 name="password"
               />
             </div>
+
             <div className="form-control mt-6">
               <button
                 type="submit"
                 className="btn bg-green-500 hover:bg-green-600 text-white font-semibold border-none"
               >
-                Login
+                Register
               </button>
             </div>
           </form>
-          <p className="ml-8 mb-3">
-            Are you new?{" "}
+          <p className="ml-8 mb-6">
+            Have an account?{" "}
             <Link
               className="drop-shadow-xl font-semibold text-red-400"
-              to={"/register"}
+              to={"/login"}
             >
-              Pls! Register.
+              Pls! Login.
             </Link>
           </p>
-          <div className="text-center mb-6 bg-red-500 py-3 mx-8 rounded-xl font-semibold">
-            <button onClick={handleGoogleLogin}>Login With Google</button>
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Registration;
