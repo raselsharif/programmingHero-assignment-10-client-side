@@ -26,15 +26,6 @@ const CartCard = ({ cart, carts, setCarts }) => {
           });
       }
     });
-    // fetch(`http://localhost:5000/cart/${id}`, {
-    //   method: "DELETE",
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     const remaining = carts.filter((cart) => cart._id !== id);
-    //     setCarts(remaining);
-    //   });
   };
   return (
     <div className="grid grid-cols-12 gap-5 mb-4 max-w-2xl mx-auto border border-red-200">
@@ -56,7 +47,7 @@ const CartCard = ({ cart, carts, setCarts }) => {
           >
             <RiDeleteBin5Fill></RiDeleteBin5Fill>
           </button>
-          <Link to={`/cardetails/${cart._id}`}>
+          <Link to={`/cardetails/${cart._id}`} npm i react-toggle-dark-mode>
             <button className="btn bg-green-500 hover:bg-green-600 text-white hover:opacity-80">
               <RiEyeLine></RiEyeLine>
             </button>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import DetailsCard from "./DetailsCard";
 import NoFound from "../NoFound/NoFound";
+import Advertisement from "../Advertisement/Advertisement";
 
 const BrandDetails = () => {
   const brand = useLoaderData();
@@ -17,6 +18,7 @@ const BrandDetails = () => {
   }, [brand.name]);
   return (
     <div className="my-10">
+      <Advertisement></Advertisement>
       <h2 className="text-center bg-green-500 py-3 font-semibold text-2xl text-white">
         {brand.name}
       </h2>
