@@ -34,32 +34,35 @@ const CarUpdate = () => {
       });
   };
   return (
-    <div>
-      <h2 className="text-center bg-red-500 py-3 text-white font-bold text-2xl mb-8">
-        Update Car
-      </h2>
-      <div className="max-w-3xl px-4 mx-auto py-10">
+    <div className="mt-12">
+      <div className="max-w-3xl px-4 mx-auto pb-10 pt-5">
+        <h2 className="text-center bg-green-600 py-4 text-white font-bold text-2xl mb-8">
+          Update Car
+        </h2>
         <form onSubmit={handleUpdateCar} className="space-y-4">
           <input
-            className="border border-red-400 py-2 px-3 mb-2 w-full focus:outline-red-500"
+            className="border border-green-400 py-2 px-3 mb-2 w-full focus:outline-red-300"
             type="text"
             name="image"
             placeholder="Past Image URL"
             defaultValue={image}
+            title="Image URL"
           />{" "}
           <br />
           <input
-            className="border border-red-400 py-2 px-3 mb-2 w-full focus:outline-red-500"
+            className="border border-green-400 py-2 px-3 mb-2 w-full focus:outline-red-300"
             type="text"
             name="name"
             placeholder="Type Car Name"
             defaultValue={name}
+            title="Model Number"
           />{" "}
           <br />
           <select
             name="brandName"
-            className="border border-red-400 py-2 px-3 mb-2 w-full focus:outline-red-500"
+            className="border border-green-400 py-2 px-3 mb-2 w-full focus:outline-red-300"
             defaultValue={brandName}
+            title="Brand"
           >
             <option value="Audi">Audi</option>
             <option value="Mercedes-Benz">Mercedes-Benz</option>
@@ -70,33 +73,36 @@ const CarUpdate = () => {
           </select>
           <br />
           <input
-            className="border border-red-400 py-2 px-3 mb-2 w-full focus:outline-red-500"
+            className="border border-green-400 py-2 px-3 mb-2 w-full focus:outline-red-300"
             type="text"
             name="details"
             placeholder="Details"
             defaultValue={details}
+            title="Details"
           />{" "}
           <br />
           <input
-            className="border border-red-400 py-2 px-3 mb-2 w-full focus:outline-red-500"
+            className="border border-green-400 py-2 px-3 mb-2 w-full focus:outline-red-300"
             type="text"
             name="price"
             placeholder="Price"
             defaultValue={price}
+            title="Price"
           />{" "}
           <br />
           <input
-            className="border border-red-400 py-2 px-3 mb-2 w-full focus:outline-red-500"
+            className="border border-green-400 py-2 px-3 mb-2 w-full focus:outline-red-300"
             type="text"
             name="rating"
             placeholder="Rating"
             defaultValue={rating}
+            title="Rating"
           />{" "}
           <br />
           <div className="text-center ">
             <input
-              className="inline-block bg-green-500 py-2 px-3 rounded-lg text-white font-semibold cursor-pointer hover:opacity-80
-            w-1/3
+              className="btn inline-block bg-green-500 py-2 px-3 rounded-lg text-white font-semibold cursor-pointer hover:bg-green-600
+            w-1/3         
             "
               type="submit"
               value={"Update Car"}

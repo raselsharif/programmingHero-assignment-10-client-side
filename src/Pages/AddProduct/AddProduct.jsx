@@ -92,10 +92,9 @@ const AddProduct = () => {
           <br />
           <div className="text-center ">
             <input
-              className="inline-block bg-green-600 py-2 px-3 rounded-lg text-white font-semibold cursor-pointer hover:opacity-80
-              w-1/3
-            
-              "
+              className="btn inline-block bg-green-500 py-2 px-3 rounded-lg text-white font-semibold cursor-pointer hover:bg-green-600
+               w-1/3         
+               "
               type="submit"
               value={"Add Car"}
             />

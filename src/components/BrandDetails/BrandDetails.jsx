@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import DetailsCard from "./DetailsCard";
+import NoFound from "../NoFound/NoFound";
 
 const BrandDetails = () => {
   const brand = useLoaderData();
@@ -15,14 +16,20 @@ const BrandDetails = () => {
       .then((data) => setCars(data));
   }, [brand.name]);
   return (
-    <div>
-      <div>Brand details page</div>
-      <h2>Details of {brand.name}</h2>
-      <div className="grid grid-cols-3 gap-3">
-        {cars.map((car) => (
-          <DetailsCard key={car._id} car={car}></DetailsCard>
-        ))}
-      </div>
+    <div className="my-10">
+      <h2 className="text-center bg-green-500 py-3 font-semibold text-2xl text-white">
+        {brand.name}
+      </h2>
+
+      {cars.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7 px-3">
+          {cars.map((car) => (
+            <DetailsCard key={car._id} car={car}></DetailsCard>
+          ))}
+        </div>
+      ) : (
+        <NoFound></NoFound>
+      )}
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import { RiDeleteBin5Fill, RiEyeLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 const CartCard = ({ cart, carts, setCarts }) => {
   const handleDelete = (id) => {
     console.log(id);
@@ -12,21 +14,30 @@ const CartCard = ({ cart, carts, setCarts }) => {
       });
   };
   return (
-    <div className="grid grid-cols-12 gap-2 mb-4 max-w-2xl mx-auto">
+    <div className="grid grid-cols-12 gap-5 mb-4 max-w-2xl mx-auto border border-red-200">
       <div className="col-span-5">
         <img src={cart.image} alt="car image" className="w-full" />
       </div>
-      <div className="col-span-7">
-        <h3>Brand: {cart.brandName}</h3>
-        <h4>Model: {cart.name}</h4>
-        <p>Price: {cart.price}</p>
-        <div>
+      <div className="col-span-7 flex items-center justify-between py-5 gap-3">
+        <div className="space-y-1">
+          <h3 className="font-medium text-lg tracking-widest">
+            Brand: {cart.brandName}
+          </h3>
+          <h4 className="font-medium">Model: {cart.name}</h4>
+          <p className="text-red-500 font-semibold">Price: {cart.price}</p>
+        </div>
+        <div className="flex flex-col gap-5 mr-4">
           <button
             onClick={() => handleDelete(cart._id)}
-            className="btn btn-error text-white"
+            className="btn btn-error text-white hover:opacity-80"
           >
-            Delete
+            <RiDeleteBin5Fill></RiDeleteBin5Fill>
           </button>
+          <Link to={`/cardetails/${cart._id}`}>
+            <button className="btn bg-green-500 hover:bg-green-600 text-white hover:opacity-80">
+              <RiEyeLine></RiEyeLine>
+            </button>
+          </Link>
         </div>
       </div>
     </div>
