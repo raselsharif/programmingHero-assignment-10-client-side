@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Registration = () => {
   const { registerWithEmail } = useContext(AuthContext);
@@ -11,13 +12,39 @@ const Registration = () => {
     const name = form.name.value;
     const photo = form.photo.value;
     const password = form.password.value;
-    console.log(email, name, photo, password);
+    // console.log(email, name, photo, password);
+    if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/.test(password)) {
+      return Swal.fire({
+        position: "center",
+        icon: "error",
+        title: `Password need at least 6 character, One Upper case and a special character`,
+        showConfirmButton: true,
+        confirmButtonText: "Go to Register page",
+        confirmButtonColor: "#22C55E",
+      });
+    }
     registerWithEmail(email, password)
       .then((res) => {
-        console.log(res.user);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `User Created Successfully
+            Pls! Login.
+            `,
+          showConfirmButton: true,
+          confirmButtonText: "OK",
+          confirmButtonColor: "#22C55E",
+        });
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: `${err.message}`,
+          showConfirmButton: true,
+          confirmButtonText: "Go to Register page",
+          confirmButtonColor: "#22C55E",
+        });
       });
   };
   return (

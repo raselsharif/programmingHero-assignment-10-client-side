@@ -22,7 +22,7 @@ const Brand = () => {
       >
         Add New Brand
       </Link>
-      <div className="grid grid-cols-3 gap-5  py-8 px-4 ">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-5  py-8 px-4 ">
         {brands.map((brand) => (
           <BrandCard key={brand._id} brand={brand}></BrandCard>
         ))}

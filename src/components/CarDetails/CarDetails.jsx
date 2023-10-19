@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 const CarDetails = () => {
   const car = useLoaderData();
   const { brandName, image, name, price, rating, details, _id } = car;
@@ -19,11 +20,17 @@ const CarDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Product Added Successfully!",
+          showConfirmButton: false,
+          timer: 2000,
+        });
       });
   };
   return (
-    <div className="grid grid-cols-2 gap-5 my-14">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-14">
       <div>
         <img className="w-full" src={image} alt="car image" />
       </div>

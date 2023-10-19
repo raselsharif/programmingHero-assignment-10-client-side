@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { loginWithGoogle, loginWithEmail } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -11,19 +13,47 @@ const Login = () => {
     const password = form.password.value;
     loginWithEmail(email, password)
       .then((result) => {
-        console.log(result);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Logged in Successfully!",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: `${error}`,
+          showConfirmButton: true,
+          confirmButtonText: "Go to Login page",
+          confirmButtonColor: "#16A34A",
+        });
       });
   };
   const handleGoogleLogin = () => {
     loginWithGoogle()
       .then((res) => {
-        console.log(res.user);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Logged in Successfully!",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        navigate("/");
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: `${err}`,
+          showConfirmButton: true,
+          confirmButtonText: "Go to Login page",
+          confirmButtonColor: "#16A34A",
+        });
       });
   };
   return (

@@ -1,22 +1,45 @@
 import { RiDeleteBin5Fill, RiEyeLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 const CartCard = ({ cart, carts, setCarts }) => {
   const handleDelete = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/cart/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        const remaining = carts.filter((cart) => cart._id !== id);
-        setCarts(remaining);
-      });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/cart/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            const remaining = carts.filter((cart) => cart._id !== id);
+            setCarts(remaining);
+          });
+      }
+    });
+    // fetch(`http://localhost:5000/cart/${id}`, {
+    //   method: "DELETE",
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     const remaining = carts.filter((cart) => cart._id !== id);
+    //     setCarts(remaining);
+    //   });
   };
   return (
     <div className="grid grid-cols-12 gap-5 mb-4 max-w-2xl mx-auto border border-red-200">
       <div className="col-span-5">
-        <img src={cart.image} alt="car image" className="w-full" />
+        <img src={cart.image} alt="car image" className="w-full h-full" />
       </div>
       <div className="col-span-7 flex items-center justify-between py-5 gap-3">
         <div className="space-y-1">
@@ -24,7 +47,7 @@ const CartCard = ({ cart, carts, setCarts }) => {
             Brand: {cart.brandName}
           </h3>
           <h4 className="font-medium">Model: {cart.name}</h4>
-          <p className="text-red-500 font-semibold">Price: {cart.price}</p>
+          <p className="text-red-500 font-semibold">Price: {cart.price} Lakh</p>
         </div>
         <div className="flex flex-col gap-5 mr-4">
           <button

@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 const CarUpdate = () => {
   const loadedCars = useLoaderData();
   const { image, name, brandName, price, rating, details, _id } = loadedCars;
@@ -20,18 +21,31 @@ const CarUpdate = () => {
       details,
     };
     console.log(carInfo);
-    fetch(`http://localhost:5000/cars/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(carInfo),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        form.reset();
-      });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do You Want to Update it!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#16A34A",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Update it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/cars/${_id}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(carInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            Swal.fire("Updated!", "Your file has been Updated!.", "success");
+            form.reset();
+          });
+      }
+    });
   };
   return (
     <div className="mt-12">
