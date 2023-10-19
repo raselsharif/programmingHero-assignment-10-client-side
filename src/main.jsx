@@ -11,6 +11,9 @@ import Error from "./Pages/Error/Error";
 import CarDetails from "./components/CarDetails/CarDetails";
 import MyCart from "./Pages/MyCart/MyCart";
 import CarUpdate from "./Pages/CarUpdate/CarUpdate";
+import Login from "./Pages/Login/Login";
+import AuthProvider from "./AuthProvider/AuthProvider";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <MainHome></MainHome>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
       },
       {
         path: "/createbrand",
@@ -56,6 +63,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
