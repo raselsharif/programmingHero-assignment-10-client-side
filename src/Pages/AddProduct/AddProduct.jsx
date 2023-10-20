@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const AddProduct = () => {
   const handleAddCar = (e) => {
     e.preventDefault();
@@ -27,6 +29,13 @@ const AddProduct = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Car Added Successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         form.reset();
       });
   };

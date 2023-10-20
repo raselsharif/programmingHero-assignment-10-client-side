@@ -9,7 +9,7 @@ const Banner = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    // autoplay: true,
+    autoplay: true,
   };
   return (
     <div className="mt-7">
