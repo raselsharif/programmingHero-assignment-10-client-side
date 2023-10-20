@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import { Link } from "react-router-dom";
 
 const CreateBrand = () => {
@@ -11,8 +10,8 @@ const CreateBrand = () => {
       name,
       photo,
     };
-    console.log(brandInfo);
-    fetch("http://localhost:5000/brands", {
+    // console.log(brandInfo);
+    fetch("https://electronics-server-ten.vercel.app/brands", {
       method: "POST",
       headers: {
         "content-type": "application/json",

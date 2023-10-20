@@ -6,13 +6,13 @@ import Advertisement from "../Advertisement/Advertisement";
 
 const BrandDetails = () => {
   const brand = useLoaderData();
-  console.log(brand);
+  // console.log(brand);
 
   const [cars, setCars] = useState([]);
-  console.log(cars);
+  // console.log(cars);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/cars/${brand.name}`)
+    fetch(`https://electronics-server-ten.vercel.app/cars/${brand.name}`)
       .then((res) => res.json())
       .then((data) => setCars(data));
   }, [brand.name]);

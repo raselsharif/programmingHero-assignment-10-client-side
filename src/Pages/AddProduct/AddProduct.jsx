@@ -18,8 +18,8 @@ const AddProduct = () => {
       rating,
       details,
     };
-    console.log(carInfo);
-    fetch("http://localhost:5000/cars", {
+    // console.log(carInfo);
+    fetch("https://electronics-server-ten.vercel.app/cars", {
       method: "POST",
       headers: {
         "content-type": "application/json",

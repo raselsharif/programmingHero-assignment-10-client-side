@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Registration = () => {
-  const { registerWithEmail } = useContext(AuthContext);
+  const { registerWithEmail, updateUser, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -25,15 +26,19 @@ const Registration = () => {
     }
     registerWithEmail(email, password)
       .then((res) => {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: `User Created Successfully
-            Pls! Login.
-            `,
-          showConfirmButton: true,
-          confirmButtonText: "OK",
-          confirmButtonColor: "#22C55E",
+        logOut();
+        updateUser(name, photo).then((res) => {
+          navigate("/login");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `User Created Successfully
+              Pls! Login.
+              `,
+            showConfirmButton: true,
+            confirmButtonText: "OK",
+            confirmButtonColor: "#22C55E",
+          });
         });
       })
       .catch((err) => {

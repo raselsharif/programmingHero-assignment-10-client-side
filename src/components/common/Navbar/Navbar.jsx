@@ -1,10 +1,28 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import ToggleButton from "../../ToggleButton/ToggleButton";
 
 const Navbar = () => {
+  const [mode, setMode] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
+
+  const handleToggle = (e) => {
+    if (e.target.checked) {
+      setMode("dark");
+    } else {
+      setMode("light");
+    }
+  };
+  useEffect(() => {
+    localStorage.setItem("theme", mode);
+    const toggleTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", toggleTheme);
+  }, [mode]);
+
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
   const handleLogout = () => {
     logOut();
   };
@@ -110,6 +128,7 @@ const Navbar = () => {
             Login
           </Link>
         )}
+        <ToggleButton handleToggle={handleToggle}></ToggleButton>
       </div>
     </div>
   );

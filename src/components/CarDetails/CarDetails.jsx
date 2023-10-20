@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 const CarDetails = () => {
   const car = useLoaderData();
   const { brandName, image, name, price, rating, details, _id } = car;
-  console.log(brandName);
+  // console.log(brandName);
   const handleAddCart = () => {
     const result = {
       brandName,
@@ -11,7 +11,7 @@ const CarDetails = () => {
       name,
       price,
     };
-    fetch(`http://localhost:5000/cart/`, {
+    fetch(`https://electronics-server-ten.vercel.app/cart/`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

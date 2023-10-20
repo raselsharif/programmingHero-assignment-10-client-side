@@ -50,7 +50,9 @@ const router = createBrowserRouter([
         path: "/detailsbrand/:id",
         element: <BrandDetails></BrandDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/brands/${params.id}`),
+          fetch(
+            `https://electronics-server-ten.vercel.app/brands/${params.id}`
+          ),
       },
       {
         path: "/cardetails/:id",
@@ -59,7 +61,8 @@ const router = createBrowserRouter([
             <CarDetails></CarDetails>
           </PrivateRouter>
         ),
-        loader: ({ params }) => fetch(`http://localhost:5000/car/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`https://electronics-server-ten.vercel.app/car/${params.id}`),
       },
       {
         path: "/updatecar/:id",
@@ -68,7 +71,8 @@ const router = createBrowserRouter([
             <CarUpdate></CarUpdate>
           </PrivateRouter>
         ),
-        loader: ({ params }) => fetch(`http://localhost:5000/car/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`https://electronics-server-ten.vercel.app/car/${params.id}`),
       },
       {
         path: "/mycart",
@@ -77,7 +81,7 @@ const router = createBrowserRouter([
             <MyCart></MyCart>
           </PrivateRouter>
         ),
-        loader: () => fetch("http://localhost:5000/carts"),
+        loader: () => fetch("https://electronics-server-ten.vercel.app/carts"),
       },
     ],
   },

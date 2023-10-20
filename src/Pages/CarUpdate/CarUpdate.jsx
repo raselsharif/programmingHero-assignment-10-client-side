@@ -20,7 +20,7 @@ const CarUpdate = () => {
       rating,
       details,
     };
-    console.log(carInfo);
+    // console.log(carInfo);
     Swal.fire({
       title: "Are you sure?",
       text: "Do You Want to Update it!",
@@ -31,7 +31,7 @@ const CarUpdate = () => {
       confirmButtonText: "Yes, Update it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/cars/${_id}`, {
+        fetch(`https://electronics-server-ten.vercel.app/cars/${_id}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",
@@ -40,7 +40,7 @@ const CarUpdate = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             Swal.fire("Updated!", "Your file has been Updated!.", "success");
             form.reset();
           });
