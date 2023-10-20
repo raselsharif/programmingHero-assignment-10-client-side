@@ -47,11 +47,15 @@ const CartCard = ({ cart, carts, setCarts }) => {
           >
             <RiDeleteBin5Fill></RiDeleteBin5Fill>
           </button>
-          <Link to={`/cardetails/${cart._id}`} npm i react-toggle-dark-mode>
-            <button className="btn bg-green-500 hover:bg-green-600 text-white hover:opacity-80">
-              <RiEyeLine></RiEyeLine>
-            </button>
-          </Link>
+          <button
+            className="btn bg-green-500 hover:bg-green-600 text-white hover:opacity-80"
+            title="Update soon"
+            disabled
+          >
+            <RiEyeLine></RiEyeLine>
+          </button>
+          {/* <Link to={`/cardetails/${cart._id}`}>
+          </Link> */}
         </div>
       </div>
     </div>
