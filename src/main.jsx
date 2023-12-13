@@ -15,6 +15,7 @@ import Login from "./Pages/Login/Login";
 import AuthProvider from "./AuthProvider/AuthProvider";
 import PrivateRouter from "./PrivateRouter/PrivateRouter";
 import Registration from "./Pages/Registration/Registration";
+import BackToTop from "./components/BackToTop/BackToTop";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <BackToTop />
     <AuthProvider>
       <RouterProvider router={router}></RouterProvider>
     </AuthProvider>
